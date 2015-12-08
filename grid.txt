@@ -1,0 +1,97 @@
+---------- Control File for Flowsquare ver 4.0 (Use SI Unit) ----------
+------------------------- General Control Data ------------------------
+01:cmode        0  // Simulation mode, 0:non-reac, 1:premixed, 2:non-premixed, 3:Euler, 4:analysis
+02:nx         512  // No. grid points
+03:ny         256  // No. grid points
+04:lx         9.0  // Domain x-size
+05:ly         4.5  // Domain y-size
+06:sts          0  // Start time step (new simulation starts from sts=0)
+07:latts    20000  // End time step
+08:cflfac       8  // Delta t factor (more is better, but typically 10-1000)
+---------------- Numerical Scheme, Smoothing & Accuracy ---------------
+09:iorder       3  // 0: low order, 1: high order, 2:2nd+LW, 3:4th+LW
+10:nfil         1  // Interval time steps for filtering
+11:wfil       0.1  // Relaxation parameter for filtering
+12:omega      1.8  // Relaxation parameter for Poisson Eq     (for cmode=0-2)
+13:peps    1.0E-1  // Convergence limit for Poisson Eq        (for cmode=0-2)
+14:loopmax    100  // Maximum no. of iteration for Poisson Eq (for cmode=0-2)
+15:wdrho      1.0  // Factor for d(rho)/dt (0<=wdrho<=1.0, 1 is ideal for cmode=1&2)
+------------------ General BC and Global IC (White) -------------------
+16:perikey      0  // 0: no peri, 1: x-peri, 2: y-peri, 3: all peri
+17:pres0  1.0E+05  // Pressure in Pa (atmospheric: 1.0E+05 Pa)
+18:uin0      20.0  // Initial u
+19:vin0         0  // Initial v
+20:rho0       1.2  // Initial density     (for cmode=0,3)
+21:temp0        0  // Initial temperature (for cmode=1,2)
+22:scalar0      0  // Initial Mixture fraction    (for cmode=2)
+------------------ BLUE Local BC and/or IC (optional) -----------------
+23:uin1      20.0  // U
+24:vin1         0  // V
+25:rho1       1.2  // Density          (for cmode0,3)
+26:temp1        0  // Temperature      (for cmode1,2)
+27:scalar1      0  // Mixture fraction (for cmode2)
+------------------ RED Local BC and/or IC (optional) ------------------
+28:uin2         0  // U
+29:vin2         0  // V
+30:rho2         0  // Density          (for cmode0,3)
+31:temp2        0  // Temperature      (for cmode1,2)
+32:scalar2      0  // Mixture fraction (for cmode2)
+---------- PINK Local BC and/or IC (pure air flow, optional) ----------
+33:uin3         0  // U
+34:vin3         0  // V
+35:temp3        0  // Temperature
+--------------- BLACK Wall Boundary Condition (optional) --------------
+36:tempw        0  // Temperature (0: free, for cmode1,2)
+-------------- GREEN Moving Boundary Condition (optional) -------------
+37:imb          0  // 0:one-time, 1:periodic
+38:umb          0  // U of moving boundary
+39:vmb          0  // V of moving boundary
+40:tempmb       0  // Temperature (0: free, for cmode1,2)
+------------- YELLOW Scalar Boundary Condition (optional) -------------
+41:scalarT      0  // Local scalar value which might be used as tracer
+---------- Transport Properties & Thermochemical Conditions -----------
+42:mu        2E-5  // Dynamic viscosity of mixture
+43:R            0  // Specific gas constant J/kg K (for cmode=1,2)
+44:diff         0  // Diffusivity of mixture       (for cmode=1,2,yellow BC)
+45:Tu           0  // Unburnt temperature          (for cmode=1)
+46:Tb           0  // Burnt (flame) temperature    (for cmode=1,2)
+------------------- Chemical Reaction (for cmode=1) -------------------
+47:krate        0  // Rate onstant
+48:Trate        0  // Activation temperature
+49:nrate        0  // Rate ~ rho*k*exp(-Ta/T)*T^n
+50:cF           0  // Progress variable at which flame locates (optional for vis)
+--------------- Non-Premixed Reacting Flow (for cmode=2) --------------
+51:Xst          0  // Stoichiometric mixture fraction at which flame locates
+52:sigma        0  // Relaxation parameter for density change (0<=sigma<=1, 1 is ideal)
+-------------------------- Display & Output ---------------------------
+53:box          1  // Pixel size of one grid point
+54:nfig        40  // Interval time steps for figure output    (0:off)
+55:nfile     5000  // Interval time steps for dump file output (0:off)
+56:bcdisp       1  // Display wall boundary (0:off, 1:on)
+57:idisp        4  // 0:off,1:rho,2:u,3:v,4:spd,5:vrt,6:T,7:rate,8:c/xi,9:P
+58:cmax         0  // Scale (max). 0:auto scale
+59:cmin         0  // Scale (min). 0:auto scale
+60:icolor       2  // 0:Jet,1:Rainbow,2:Nishiki,3:Gray,4:Gray(inv),5:Hot,6:Sea,7:Leaf
+61:icont        0  // (Reaction front) contour line (0:off,1:blck,2:red,3:grn,4:bl,5:wht)
+62:linewidth    0  // Line width of contour line (1, 3, 5 or 7)
+63:ivec         0  // Velocity vector (0:off,1:blck,2:red,3:grn,4:bl,5:wht)
+64:ndiv         0  // Interval grid points between displayed vectors (0:auto)
+65:vecsize      0  // Pixel size of vector arrow (0:auto)
+------------------ Lagrangian Trajectory (optional) -------------------
+66:lagkey       1  // 0:off,1:x, 2:y,3:x-x,4:y-y
+67:lagcolor     0  // 0:black, 1:white
+68:lagsize      1  // Pixel size of particles
+69:nlagra   20000  // Interval time steps of restart (>=100)
+70:npart     6000  // No. particle (>=1000)
+------------------------ Body Force (optional) ------------------------
+71:gfx          0  // X-body force
+72:gfy          0  // Y-body force
+73:dref         0  // Reference density. 1:max, 2:middle, 3:min density as reference
+------------------- Initial Perturbation (optional) -------------------
+74:pmode        0  // Mode of perturbation 0:off, 1:single mode, 2:multi, 3:multi (random amp.)
+75:umag         0  // Velocity amplitude (m/s)
+76:nwave        0  // Number of waves in x-direction
+-------------------------------- Others -------------------------------
+77:nwait        0  // Wait time
+-----------------------------------------------------------------------
+#End of file
